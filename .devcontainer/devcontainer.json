@@ -1,0 +1,47 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
+// https://github.com/microsoft/vscode-dev-containers/tree/master/containers/go
+{
+	"name": "github.com/marcelom/golog",
+	"dockerFile": "Dockerfile",
+	"capAdd": [
+		"SYS_PTRACE"
+	],
+	"securityOpt": [
+		"seccomp=unconfined"
+	],
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "go version",
+	// Comment out the next line to run as root. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode",
+	"customizations": {
+		"vscode": {
+			// Use 'settings' to set *default* container specific settings.json values on container create.
+			// You can edit these settings after create using File > Preferences > Settings > Remote.
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"[go]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": true
+					}
+				}, // read this for more info: https://github.com/microsoft/vscode-go/blob/master/README.md#settings-to-control-the-use-of-the-go-language-server
+				"go.gopath": "/go",
+				//"go.inferGopath": true,
+				//"go.autocompleteUnimportedPackages": true,
+				"go.useLanguageServer": true,
+				"go.lintTool": "golangci-lint",
+				"go.lintFlags": [
+					"--fast"
+				],
+				"gopls": {
+					"usePlaceholders": true,
+				} // Per https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+			},
+			"extensions": [
+				"golang.go",
+				"davidanson.vscode-markdownlint",
+				"eamodio.gitlens"
+			]
+		}
+	}
+}
